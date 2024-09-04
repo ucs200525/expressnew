@@ -1,10 +1,10 @@
 {
-  "name": "your-project-name",
+  "name": "app",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "postinstall": "npx playwright install --verbose"
+    "build": "npx playwright install && echo 'Build complete'"
   },
   "dependencies": {
     "express": "^4.19.2",
