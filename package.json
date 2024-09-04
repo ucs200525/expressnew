@@ -4,7 +4,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "postinstall": "npx playwright install"
+    "postinstall": "npx playwright install --verbose"
   },
   "dependencies": {
     "express": "^4.19.2",
