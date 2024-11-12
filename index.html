@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panchaka Rahita Muhurat Screenshot</title>
+</head>
+<body>
+    <h2>Panchaka Rahita Muhurat Screenshot</h2>
+    
+    <form id="screenshotForm">
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" placeholder="Enter city" value="Vijayawada">
+        
+        <label for="date">Date (dd/mm/yyyy):</label>
+        <input type="text" id="date" name="date" placeholder="Enter date" value="09/04/2024">
+        
+        <button type="submit">Get Screenshot</button>
+    </form>
+    
+    <div id="result">
+        <h3>Screenshot Result</h3>
+        <img id="screenshot" src="" alt="Screenshot will appear here">
+    </div>
+    
+    <script>
+        document.getElementById('screenshotForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            
+            const city = document.getElementById('city').value;
+            const date = document.getElementById('date').value;
+            const resultImage = document.getElementById('screenshot');
+
+            try {
+                const response = await fetch(`http://localhost:3000/screenshot?city=${city}&date=${date}`);
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const url = URL.createObjectURL(blob);
+                    resultImage.src = url;
+                } else {
+                    alert('Failed to fetch the screenshot. Please check the server logs for details.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while fetching the screenshot.');
+            }
+        });
+    </script>
+</body>
+</html>
